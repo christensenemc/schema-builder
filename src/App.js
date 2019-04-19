@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{ Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import BootstrapProvider from '@bootstrap-styled/provider';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import EditSchema from './routes/EditSchema';
+
+const BOOTSTRAP_THEME = {};
+
+function App(props){
+  const { reduxStore } = props;
+
+  return (
+    <Provider store={reduxStore}>
+      <BootstrapProvider theme={BOOTSTRAP_THEME}>
+        <Router>
+          <Fragment>
+            <Route 
+              exact path='/schema/:schemaId/commit/:commitId' 
+              component={EditSchema} 
+            />
+            <Route 
+              exact path='/schema/:schemaId' 
+              component={EditSchema} 
+            />
+          </Fragment>
+        </Router>
+      </BootstrapProvider>
+    </Provider>
+  )
+
 }
 
 export default App;
