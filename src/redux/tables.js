@@ -7,15 +7,15 @@ const TABLE_ADDED = 'TABLE_ADDED',
   LOADED_FROM_LOCALSTORAGE = 'LOADED_FROM_LOCALSTORAGE',
   SAVED_TO_LOCALSTORAGE = 'SAVED_TO_LOCALSTORAGE';
 
-export function addTable(tableAttributes){
+export function addTable(tableAttributes) {
   const defaultAttributes = {
-      id: generateGUID(),
-      position: { x:0, y:0 },
-      dimensions: { height:54, width:206, x:0, y:0 },
-      name: '',
-      columns: [],
-      expanded:true
-    };
+    id: generateGUID(),
+    position: { x: 0, y: 0 },
+    dimensions: { height: 54, width: 206, x: 0, y: 0 },
+    name: '',
+    columns: [],
+    expanded: true
+  };
 
   const newTable = { ...defaultAttributes, ...tableAttributes };
 
@@ -25,52 +25,56 @@ export function addTable(tableAttributes){
       tableId: newTable.id,
       attributes: newTable
     }
-  }
+  };
 }
 
-
-export function updateTable(tableId,updatedAttributes){
+export function updateTable(tableId, updatedAttributes) {
   return {
     type: TABLE_UPDATED,
-    payload:{
+    payload: {
       tableId: tableId,
       attributes: updatedAttributes
     }
-  }
-};
-
-export function removeTable(tableId){
-  return {
-    type: TABLE_REMOVED,
-    payload:{
-      tableId:tableId
-    }
-  }
+  };
 }
 
-export function loadFromLocalStorage(schemaId,commitId){
-  const savedState = JSON.parse(window.localStorage.getItem(stateKey(schemaId,commitId)));
+export function removeTable(tableId) {
+  return {
+    type: TABLE_REMOVED,
+    payload: {
+      tableId: tableId
+    }
+  };
+}
+
+export function loadFromLocalStorage(schemaId, commitId) {
+  const savedState = JSON.parse(
+    window.localStorage.getItem(stateKey(schemaId, commitId))
+  );
 
   return {
     type: LOADED_FROM_LOCALSTORAGE,
-    payload:{
-      savedState:savedState
+    payload: {
+      savedState: savedState
     }
-  }
+  };
 }
 
-export function saveToLocalStorage(schemaId,commitId,state){
-  console.log('ATTEMPTING TO SAVE:',state);
+export function saveToLocalStorage(schemaId, commitId, state) {
+  console.log('ATTEMPTING TO SAVE:', state);
 
-  window.localStorage.setItem(stateKey(schemaId,commitId),JSON.stringify(state))
+  window.localStorage.setItem(
+    stateKey(schemaId, commitId),
+    JSON.stringify(state)
+  );
 
   return {
-    type: SAVED_TO_LOCALSTORAGE,
-  }
+    type: SAVED_TO_LOCALSTORAGE
+  };
 }
 
-export default function reducer(state={},action){
-  switch(action.type){
+export default function reducer(state = {}, action) {
+  switch (action.type) {
     case LOADED_FROM_LOCALSTORAGE: {
       const { savedState } = action.payload;
 
@@ -82,26 +86,26 @@ export default function reducer(state={},action){
 
       return {
         ...state,
-        [tableId]:attributes
+        [tableId]: attributes
       };
     }
-    
+
     case TABLE_UPDATED: {
       const { tableId, attributes } = action.payload;
 
       return {
         ...state,
-        [tableId]:{
+        [tableId]: {
           ...state[tableId],
           ...attributes
         }
       };
     }
-    
-    case TABLE_REMOVED: {
-      const { tableId } = action.payload
 
-      return omit(state,tableId);
+    case TABLE_REMOVED: {
+      const { tableId } = action.payload;
+
+      return omit(state, tableId);
     }
 
     default: {

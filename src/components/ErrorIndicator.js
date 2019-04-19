@@ -6,14 +6,12 @@ const ErrorText = styled.div`
   font-size: 12px;
 `;
 
-export default function ErrorIndicator(props){
-  const {children} = props;
+export default function ErrorIndicator(props) {
+  const { children } = props;
 
-  if(!children || children.length === 0){
-    return null
+  if (!children || children.length === 0) {
+    return null;
   } else {
-    return (
-      <ErrorText>{children}</ErrorText>
-    )
+    return <ErrorText>{children}</ErrorText>;
   }
 }

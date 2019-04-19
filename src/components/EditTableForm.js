@@ -32,34 +32,31 @@ const FooterButtonsCol = styled(Col)`
   justify-content: space-between;
 `;
 
+function EditTableForm(props) {
+  const { defaultValues, onSubmit, onCancelClick, otherTables } = props;
 
-function EditTableForm(props){
-  const { 
-    defaultValues,
-    onSubmit,
-    onCancelClick,
-    otherTables 
-  } = props;
+  const initialValues = { id: '', name: '', columns: [], ...defaultValues };
 
-  const initialValues = { id:'', name: '', columns:[], ...defaultValues };
-
-  const [ name, setName ] = useState(initialValues.name);
-  const [ selectedColumnId, setSelectedColumnId ] = useState(null);
-  const [ columns, setColumns ] = useState(initialValues.columns);
-  const [ errors, setErrors ] = useState({});
+  const [name, setName] = useState(initialValues.name);
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
+  const [columns, setColumns] = useState(initialValues.columns);
+  const [errors, setErrors] = useState({});
 
   //Handlers
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTable = { id:initialValues.id, name:name, columns:columns }
+    const newTable = { id: initialValues.id, name: name, columns: columns };
 
     const newErrors = validateTable(newTable);
 
-    if(newErrors.name || newErrors.columns.some((col) => col.name || col.dataType)){
-      console.log('GOT ERRORS ',newErrors);
+    if (
+      newErrors.name ||
+      newErrors.columns.some((col) => col.name || col.dataType)
+    ) {
+      console.log('GOT ERRORS ', newErrors);
       setErrors(newErrors);
     } else {
-      onSubmit(e,newTable);
+      onSubmit(e, newTable);
     }
   };
 
@@ -67,17 +64,16 @@ function EditTableForm(props){
     let changes;
 
     //I could do this with a ternary but it would be really long
-    if(event.target.type === 'checkbox'){
-      changes = {[event.target.name]: event.target.checked};
-
+    if (event.target.type === 'checkbox') {
+      changes = { [event.target.name]: event.target.checked };
     } else {
       changes = { [event.target.name]: event.target.value };
     }
 
     const newColumns = columns.map((col) => {
-      return col.id === id ? {...col, ...changes} : col;
-    })   
-    
+      return col.id === id ? { ...col, ...changes } : col;
+    });
+
     setColumns(newColumns);
   };
 
@@ -85,34 +81,34 @@ function EditTableForm(props){
     const changes = { [event.target.name]: event.target.value };
 
     const newColumns = columns.map((col) => {
-      if(col.id === id){
-        const newDataTypeArgs = {...col.dataTypeArgs, ...changes };
+      if (col.id === id) {
+        const newDataTypeArgs = { ...col.dataTypeArgs, ...changes };
 
-        return {...col, dataTypeArgs: newDataTypeArgs };
+        return { ...col, dataTypeArgs: newDataTypeArgs };
       } else {
         return col;
       }
     });
 
-    setColumns(newColumns);  
-  }
+    setColumns(newColumns);
+  };
 
   const handleAddColumnClick = (event) => {
     const newColumnId = generateGUID();
 
     const newColumns = columns.concat({
       id: newColumnId,
-      name:'',
-      primaryKey:false,
-      dataType:'',
-      dataTypeArgs:{},
-      notNull:false,
-      defaultValue:''
+      name: '',
+      primaryKey: false,
+      dataType: '',
+      dataTypeArgs: {},
+      notNull: false,
+      defaultValue: ''
     });
 
     setColumns(newColumns);
-    setSelectedColumnId(newColumnId);    
-  }
+    setSelectedColumnId(newColumnId);
+  };
 
   const selectedColumn = columns.find((col) => col.id === selectedColumnId);
 
@@ -121,25 +117,25 @@ function EditTableForm(props){
       <FlexContainer>
         <NameInputRow>
           <Col xs={4} lg={3}>
-            <TextInput 
-              label='Table name'
+            <TextInput
+              label="Table name"
               value={name}
               error={errors.name}
-              onChange={(e) => setName(e.target.value)}            
+              onChange={(e) => setName(e.target.value)}
             />
           </Col>
         </NameInputRow>
         <ColumnsInputRow>
           <Col xs={4} lg={3}>
-            <ColumnsMenu 
-              columns={columns} 
+            <ColumnsMenu
+              columns={columns}
               selectedColumnId={selectedColumnId}
               onColumnClick={(col) => setSelectedColumnId(col.id)}
             />
           </Col>
           <Col xs={8} lg={9}>
             {selectedColumnId ? (
-              <EditColumnInputs 
+              <EditColumnInputs
                 values={selectedColumn}
                 onChange={handleColumnChange(selectedColumnId)}
                 onArgsChange={handleColumnArgsChange(selectedColumnId)}
@@ -152,46 +148,39 @@ function EditTableForm(props){
         </ColumnsInputRow>
         <FooterButtonsRow>
           <FooterButtonsCol xs={12}>
-            <Button 
-              type='button' 
-              color='primary'
+            <Button
+              type="button"
+              color="primary"
               onClick={handleAddColumnClick}
             >
               Add Column
             </Button>
             <div>
-              <Button 
-                type='button'
-                onClick={onCancelClick}
-                color='danger'
-              >
+              <Button type="button" onClick={onCancelClick} color="danger">
                 Cancel
-              </Button>  
+              </Button>
               &nbsp;&nbsp;&nbsp;
-              <Button 
-                type='submit'
-                color='secondary'
-              >
+              <Button type="submit" color="secondary">
                 Save
-              </Button>              
+              </Button>
             </div>
           </FooterButtonsCol>
         </FooterButtonsRow>
       </FlexContainer>
     </FullHeightForm>
-  )
+  );
 }
 
 EditTableForm.defaultProps = {
-  defaultValues:{
-    id:'',
+  defaultValues: {
+    id: '',
     name: '',
     columns: []
   },
-  otherTables:[],
-  onSubmit:() => {},
-  onDelete:() => {},
-  onCancelClick:() => {}
-}
+  otherTables: [],
+  onSubmit: () => {},
+  onDelete: () => {},
+  onCancelClick: () => {}
+};
 
 export default EditTableForm;

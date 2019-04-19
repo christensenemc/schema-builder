@@ -1,18 +1,13 @@
-import {
-  createStore,
-  combineReducers,
-  applyMiddleware
-} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 
-import tableReducer from './tables'
+import tableReducer from './tables';
 
-export default function createFinalStore(){
-  
+export default function createFinalStore() {
   const finalReducer = combineReducers({
     tables: tableReducer
   });
 
-  return createStore(finalReducer,applyMiddleware(logger));
+  return createStore(finalReducer, applyMiddleware(logger));
 }
