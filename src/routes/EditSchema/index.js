@@ -38,8 +38,7 @@ function EditSchemaRoute(props){
     updateTable,
     removeTable,
     loadFromLocalStorage,
-    saveToLocalStorage,
-    connections
+    saveToLocalStorage
   } = props;
 
 

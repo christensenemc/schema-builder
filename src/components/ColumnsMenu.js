@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { 
-  Button,
   FormGroup,
   Label,
   ListGroup, 
@@ -11,10 +10,6 @@ import {
 
 const NoBottomMarginLabel = styled(Label)`
   margin-bottom: 0px;
-`
-
-const AddColumnButton = styled(Button)`
-  margin-top: 0.5rem;
 `
 
 function ColumnsMenu(props){

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { validateTable, generateGUID } from '../helpers';
 
-import TableNameInput from './TableNameInput';
 import TextInput from './TextInput';
 import EditColumnInputs from './EditColumnInputs';
 import ColumnsMenu from './ColumnsMenu';
@@ -38,7 +37,6 @@ function EditTableForm(props){
   const { 
     defaultValues,
     onSubmit,
-    onDelete,
     onCancelClick,
     otherTables 
   } = props;

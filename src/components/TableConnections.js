@@ -2,8 +2,6 @@ import React,{Fragment} from 'react';
 import styled from 'styled-components';
 
 import values from 'lodash/values';
-import flatten from 'lodash/flatten';
-
 
 const SVG = styled.svg`
   position: fixed;
@@ -12,23 +10,13 @@ const SVG = styled.svg`
   width:100%;
   height:100%;
   z-index: 1;
-`
-
-const ConnectionPolyline = styled.polyline`
-  stroke-width: 1px;
-  stroke: #aaa;
-  fill: transparent;
-`
+`;
 
 const ConnectionPath = styled.path`
   stroke-width: 1px;
   stroke: #aaa;
   fill: transparent;
 `;
-
-const ConnectionPoint = styled.circle`
-  fill: #aaa;
-`
 
 function getPathDFromPoints(points){
   return `

@@ -1,17 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import capitalize from 'lodash/capitalize';
 
-import { Form, FormGroup, Label, Input } from '@bootstrap-styled/v4';
+import { FormGroup, Label, Input } from '@bootstrap-styled/v4';
 
 function CheckboxInput(props){
   const { 
     value, 
     name,
     label,
-    onChange,
-    error,
-    placeholder
+    onChange
   } = props;
 
   //TODO: Forward ref to input

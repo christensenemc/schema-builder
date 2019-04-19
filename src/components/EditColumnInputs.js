@@ -4,12 +4,11 @@ import TextInput from './TextInput';
 import TypeInput from './TypeInput';
 import CheckboxInput from './CheckboxInput';
 
-import { Form, Container, Row, Col, Button } from '@bootstrap-styled/v4';
+import { Container, Row, Col } from '@bootstrap-styled/v4';
 
 function EditColumnInputs(props){
   const { 
     values, 
-    errors, 
     onChange, 
     onArgsChange,
     otherTables 

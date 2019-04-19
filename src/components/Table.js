@@ -64,7 +64,6 @@ function Table(props){
     onExpandClick,
     onDimensionsChange,
     onPositionChange,
-    onDrag,
     position 
   } = props;
 

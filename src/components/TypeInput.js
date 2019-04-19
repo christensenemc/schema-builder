@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import capitalize from 'lodash/capitalize';
 import values from 'lodash/values';
 
-import { Form, FormGroup, Label, Input } from '@bootstrap-styled/v4';
+import { FormGroup, Label, Input } from '@bootstrap-styled/v4';
 import Select from 'react-select';
 
 import DATA_TYPES from '../dataTypes';
@@ -33,8 +32,6 @@ function TypeInput(props){
     label,
     onChange,
     onArgsChange,
-    error,
-    placeholder,
     otherTables
   } = props;
 

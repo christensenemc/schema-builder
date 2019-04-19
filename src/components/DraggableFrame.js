@@ -22,7 +22,6 @@ const Content = styled.div`
 
 const DraggableFrame = React.forwardRef(function(props,ref){
   const {
-    defaultPosition,
     position,
     width,
     onDragStart,

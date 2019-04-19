@@ -1,6 +1,3 @@
-import zipWith from 'lodash/zipWith';
-import values from 'lodash/values';
-
 import DATA_TYPES from './dataTypes';
 
 export function withCSSUnit(num){

@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import capitalize from 'lodash/capitalize';
 
-import { Form, FormGroup, Label, Input } from '@bootstrap-styled/v4';
+import { FormGroup, Label, Input } from '@bootstrap-styled/v4';
 
 function TextInput(props){
   const { 
@@ -10,7 +9,6 @@ function TextInput(props){
     name,
     label,
     onChange,
-    error,
     placeholder
   } = props;
 
