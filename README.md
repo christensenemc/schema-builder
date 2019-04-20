@@ -6,4 +6,6 @@ Todos
 - [x] Render NavBar properly
 - [ ] Add Crows Feet to table conenctions
 - [ ] Add Delete Table Button
-- [ ] Fix right padding issue with XL sizing
+- [x] Fix right padding issue with XL sizing
+- [ ] Create a valid position for the new table (center of screen?)
+- [ ] React-Router-Dom -> Reach-Router

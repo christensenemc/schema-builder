@@ -11,21 +11,27 @@ import { Form, Container, Row, Col, Button } from '@bootstrap-styled/v4';
 
 const FullHeightForm = styled(Form)`
   height: 100%;
+  width: auto;
 `;
 
 const FlexContainer = styled(Container)`
+  width: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
 `;
 
-const NameInputRow = styled(Row)``;
+const NameInputRow = styled(Row)`
+  margin-top: 15px;
+`;
 
 const ColumnsInputRow = styled(Row)`
   flex: 1;
 `;
 
-const FooterButtonsRow = styled(Row)``;
+const FooterButtonsRow = styled(Row)`
+  margin-bottom: 15px;
+`;
 
 const FooterButtonsCol = styled(Col)`
   display: flex;

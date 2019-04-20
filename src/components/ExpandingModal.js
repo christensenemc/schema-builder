@@ -34,7 +34,6 @@ const Window = styled.div`
   background-color: white;
   box-shadow: 2px 2px 5px grey;
   border-radius: 2px;
-  padding: 12px;
   opacity: ${(props) => props.opacity};
   transition: all ${ANIMATION_TIME_IN_SECONDS}s ease-in;
   overflow: hidden;
