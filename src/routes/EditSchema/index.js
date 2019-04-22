@@ -63,9 +63,14 @@ function EditSchemaRoute(props) {
   };
 
   const handleAddTableClick = (event) => {
+    const topLeftX = window.innerWidth / 2 - 103,
+      topLeftY = window.innerHeight / 2 - 27;
+
     const newTable = {
       id: generateGUID(),
-      name: 'new_table'
+      name: '',
+      position: { x: topLeftX, y: topLeftY },
+      dimensions: { height: 54, width: 206, x: topLeftX, y: topLeftY }
     };
 
     addTable(newTable);

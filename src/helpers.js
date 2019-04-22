@@ -28,6 +28,13 @@ export function dimensionsForRef(ref) {
   };
 }
 
+export function getCenterDimensionsForWindow(parentWindow) {
+  return {
+    x: parentWindow.innerWidth / 2,
+    y: parentWindow.innerHeight / 2
+  };
+}
+
 export function positionFixedDimensions(dimensions) {
   return {
     left: dimensions.x,
