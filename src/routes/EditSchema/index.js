@@ -111,6 +111,8 @@ function EditSchemaRoute(props) {
     setModalOpen(false);
   };
 
+  const showTables = true;
+
   return (
     <Container>
       <ExpandingModal
@@ -129,20 +131,21 @@ function EditSchemaRoute(props) {
           onCancelClick={handleModalClose}
         />
       </ExpandingModal>
-      {values(tables).map((table) => (
-        <Table
-          key={table.id}
-          name={table.name}
-          expanded={table.expanded}
-          position={table.position}
-          columns={table.columns}
-          onExpandClick={handleTableExpandClick(table.id)}
-          onDimensionsChange={handleTableDimensionsChange(table.id)}
-          onPositionChange={handleTablePositionChange(table.id)}
-          onEditClick={handleTableEditClick(table.id)}
-        />
-      ))}
       <TableConnections tables={tables} />
+      {showTables &&
+        values(tables).map((table) => (
+          <Table
+            key={table.id}
+            name={table.name}
+            expanded={table.expanded}
+            position={table.position}
+            columns={table.columns}
+            onExpandClick={handleTableExpandClick(table.id)}
+            onDimensionsChange={handleTableDimensionsChange(table.id)}
+            onPositionChange={handleTablePositionChange(table.id)}
+            onEditClick={handleTableEditClick(table.id)}
+          />
+        ))}
       <NavBar
         onAddTableClick={handleAddTableClick}
         onSaveClick={handleSaveClick}

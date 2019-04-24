@@ -13,7 +13,7 @@ const Content = styled.div`
   border: 1px solid lightgrey;
   width: ${(props) => props.width || 180}px;
   border-radius: 2px;
-  transform: ${(props) => (props.dragging ? 'scale(1.05)' : 'scale(1)')};
+  transform: ${(props) => (props.dragging ? 'scale(1.02)' : 'scale(1)')};
   box-shadow: ${(props) =>
     props.dragging ? '3px 3px 5px lightgrey' : 'inherit'};
   cursor: ${(props) => (props.dragging ? 'grabbing' : 'grab')};

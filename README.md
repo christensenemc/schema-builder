@@ -9,7 +9,7 @@ Todos
 - [ ] Render self relations
 - [ ] Render connections to top of table when table is on top of another table
 - [x] Render NavBar properly
-- [ ] Add crows feet to table conenctions
+- [x] Add arrows to table conenctions
 - [ ] Add Delete table button
 - [ ] Add Delete column button
 - [x] Fix right padding issue with XL sizing
